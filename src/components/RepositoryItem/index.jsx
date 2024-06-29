@@ -1,8 +1,8 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import AvatarView from './AvatarView';
 import DescriptionView from './DescriptionView';
-import StatisticsView from './StatisticsView';
+import StatsView from './StatsView';
 
 export default function RepositoryItem({ repository }) {
   const {
@@ -26,7 +26,7 @@ export default function RepositoryItem({ repository }) {
         />
       </View>
       <View>
-        <StatisticsView
+        <StatsView
           stargazersCount={stargazersCount}
           forksCount={forksCount}
           reviewCount={reviewCount}
