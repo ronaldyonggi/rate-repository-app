@@ -18,9 +18,8 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
     paddingBottom: 10,
-    borderColor: 'red',
+    borderColor: theme.colors.mainBackground,
     borderWidth: 1,
-    flexGrow: 1,
     alignItems: 'center',
   },
   tabText: {
