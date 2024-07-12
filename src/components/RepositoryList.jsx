@@ -1,17 +1,25 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import RepositoryItem from './RepositoryItem';
+import { useQuery } from '@apollo/client';
+import { GET_REPOSITORIES } from '../graphql/queries';
+import Text from './Text';
 // import { repositories } from '../../repositories';
-import { useEffect, useState } from 'react';
-import useRepositories from '../hooks/useRepositories';
+// import { useEffect, useState } from 'react';
+// import useRepositories from '../hooks/useRepositories';
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
 export default function RepositoryList() {
-  const { repositories } = useRepositories();
+  // const { repositories } = useRepositories();
+  const {loading, error, data} = useQuery(GET_REPOSITORIES)
+
+  if (loading) return <Text>Loading...</Text>
+
+  console.log(data)
 
   // Get nodes from the edges array
-  const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
+  const repositoryNodes = data
+    ? data.repositories.edges.map((edge) => edge.node)
     : [];
 
   return (
