@@ -1,9 +1,10 @@
-import { Pressable, StyleSheet, TextInput, View } from 'react-native'
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import * as yup from 'yup';
-import React from 'react'
-import Text from './Text'
+import React from 'react';
+import Text from './Text';
 import { useFormik } from 'formik';
 import theme from '../theme';
+import useSignIn from '../hooks/useSignIn';
 
 const initialValues = {
   username: '',
@@ -11,12 +12,8 @@ const initialValues = {
 };
 
 const validationSchema = yup.object().shape({
-  username: yup
-    .string()
-    .required('Username is required'),
-  password: yup
-    .string()
-    .required('Password is required'),
+  username: yup.string().required('Username is required'),
+  password: yup.string().required('Password is required'),
 });
 
 const SignInForm = ({ onSubmit }) => {
@@ -48,12 +45,13 @@ const SignInForm = ({ onSubmit }) => {
         <Text style={styles.errorText}>{formik.errors.password}</Text>
       )}
       <Pressable style={styles.button} onPress={formik.handleSubmit}>
-        <Text fontWeight='bold' color='primary'>Sign in</Text>
+        <Text fontWeight='bold' color='primary'>
+          Sign in
+        </Text>
       </Pressable>
     </View>
-  )
-}
-
+  );
+};
 
 export default function SignIn() {
   const onSubmit = (values) => {
