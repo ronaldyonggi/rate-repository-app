@@ -11,11 +11,9 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 export default function RepositoryList() {
   // const { repositories } = useRepositories();
-  const {loading, error, data} = useQuery(GET_REPOSITORIES)
+  const {loading, data} = useQuery(GET_REPOSITORIES)
 
   if (loading) return <Text>Loading...</Text>
-
-  console.log(data)
 
   // Get nodes from the edges array
   const repositoryNodes = data
