@@ -71,8 +71,6 @@ export default function SignIn() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.repositoryItemBackground,
-    borderColor: 'red',
-    borderWidth: 1,
     paddingHorizontal: 20,
     paddingBottom: 15,
   },
