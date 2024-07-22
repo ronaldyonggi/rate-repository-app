@@ -1,11 +1,9 @@
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import * as yup from 'yup';
 import React from 'react';
-import Text from './Text';
+import Text from '../Text';
 import { useFormik } from 'formik';
-import theme from '../theme';
-import useSignIn from '../hooks/useSignIn';
-import { useNavigate } from 'react-router-native';
+import theme from '../../theme';
 
 const initialValues = {
   username: '',
@@ -54,20 +52,7 @@ const SignInForm = ({ onSubmit }) => {
   );
 };
 
-export default function SignIn() {
-  const [signIn] = useSignIn();
-  const navigate = useNavigate();
-  const onSubmit = async (values) => {
-    const { username, password } = values;
-
-    try {
-      await signIn({ username, password });
-      navigate('/');
-
-    } catch (e) {
-      console.error(`Error at SignIn component: ${e}`);
-    }
-  };
+export default function SignInContainer({ onSubmit }) {
   return <SignInForm onSubmit={onSubmit} />;
 }
 

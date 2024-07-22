@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, View } from 'react-native';
-import RepositoryItem from '../../RepositoryItem';
+import RepositoryItem from '../RepositoryItem';
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
