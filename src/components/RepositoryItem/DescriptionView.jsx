@@ -5,9 +5,9 @@ import React from 'react'
 export default function DescriptionView({ fullName, description, language }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text} fontWeight='bold' >{fullName}</Text>
-      <Text style={styles.text} >{description}</Text>
-      <Text color='primary' style={[styles.text, styles.language]}>{language}</Text>
+      <Text style={styles.text} fontWeight='bold' testID='fullName'>{fullName}</Text>
+      <Text style={styles.text} testID='description'>{description}</Text>
+      <Text color='primary' style={[styles.text, styles.language]} testID='language'>{language}</Text>
     </View>
   )
 }
