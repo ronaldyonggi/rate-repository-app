@@ -9,16 +9,18 @@ export default function StatsView({
   ratingAverage,
 }) {
   const countConverter = (count) => {
-    if (count > 1000) {
+    if (count >= 1000) {
       return `${(count / 1000).toFixed(1)}k`;
     }
+    return count
+
   };
   return (
     <View style={styles.container}>
-      <CountView count={countConverter(stargazersCount)} property="Stars" />
-      <CountView count={countConverter(forksCount)} property="Forks" />
-      <CountView count={reviewCount} property="Reviews" />
-      <CountView count={ratingAverage} property="Rating" />
+      <CountView count={countConverter(stargazersCount)} property="Stars" testID="starsCount" />
+      <CountView count={countConverter(forksCount)} property="Forks" testID="forksCount" />
+      <CountView count={reviewCount} property="Reviews" testID="reviewCount" />
+      <CountView count={ratingAverage} property="Rating" testID="ratingAverage" />
     </View>
   );
 }

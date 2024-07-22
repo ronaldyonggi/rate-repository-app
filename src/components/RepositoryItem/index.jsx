@@ -16,7 +16,7 @@ export default function RepositoryItem({ repository }) {
     ownerAvatarUrl,
   } = { ...repository };
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID='repositoryItem'>
       <View style={styles.top}>
         <AvatarView ownerAvatarUrl={ownerAvatarUrl} />
         <DescriptionView
