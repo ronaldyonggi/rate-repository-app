@@ -2,10 +2,10 @@ import { StyleSheet, View } from 'react-native'
 import React from 'react'
 import Text from '../../Text'
 
-export default function CountView({ count, property }) {
+export default function CountView({ count, property, testID }) {
   return (
     <View style={styles.container}>
-      <Text fontWeight='bold'>{count}</Text>
+      <Text fontWeight='bold' testID={testID}>{count}</Text>
       <Text>{property}</Text>
     </View>
   )
