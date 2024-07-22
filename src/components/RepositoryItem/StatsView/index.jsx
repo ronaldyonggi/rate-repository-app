@@ -17,10 +17,10 @@ export default function StatsView({
   };
   return (
     <View style={styles.container}>
-      <CountView count={countConverter(stargazersCount)} property="Stars" />
-      <CountView count={countConverter(forksCount)} property="Forks" />
-      <CountView count={reviewCount} property="Reviews" />
-      <CountView count={ratingAverage} property="Rating" />
+      <CountView count={countConverter(stargazersCount)} property="Stars" testID="starsCount" />
+      <CountView count={countConverter(forksCount)} property="Forks" testID="forksCount" />
+      <CountView count={reviewCount} property="Reviews" testID="reviewCount" />
+      <CountView count={ratingAverage} property="Rating" testID="ratingAverage" />
     </View>
   );
 }
