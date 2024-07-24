@@ -1,11 +1,17 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import AvatarView from './AvatarView';
 import DescriptionView from './DescriptionView';
 import StatsView from './StatsView';
+import { useNavigate } from 'react-router-native';
+import Text from '../Text';
+import * as Linking from 'expo-linking';
 
-export default function RepositoryItem({ repository }) {
+export default function RepositoryItem({ repository, isSingleView }) {
+  const navigate = useNavigate();
+
   const {
+    id,
     fullName,
     description,
     language,
@@ -14,9 +20,23 @@ export default function RepositoryItem({ repository }) {
     ratingAverage,
     reviewCount,
     ownerAvatarUrl,
+    url,
   } = { ...repository };
+
+  const handleSingleView = () => {
+    !isSingleView && navigate(`/repository/${id}`);
+  };
+
+  const handleOpenURL = () => {
+    Linking.openURL(url);
+  };
+
   return (
-    <View style={styles.container} testID='repositoryItem'>
+    <Pressable
+      style={styles.container}
+      testID='repositoryItem'
+      onPress={handleSingleView}
+    >
       <View style={styles.top}>
         <AvatarView ownerAvatarUrl={ownerAvatarUrl} />
         <DescriptionView
@@ -33,7 +53,16 @@ export default function RepositoryItem({ repository }) {
           ratingAverage={ratingAverage}
         />
       </View>
-    </View>
+
+      {/* Only display 'Open in GitHub' button in single view mode */}
+      {isSingleView && (
+        <Pressable onPress={handleOpenURL}>
+          <Text color='primary' fontWeight='bold' style={styles.buttonText}>
+            Open in GitHub
+          </Text>
+        </Pressable>
+      )}
+    </Pressable>
   );
 }
 
@@ -44,5 +73,10 @@ const styles = StyleSheet.create({
   },
   top: {
     flexDirection: 'row',
+  },
+  buttonText: {
+    padding: 15,
+    textAlign: 'center',
+    margin: 15,
   },
 });
