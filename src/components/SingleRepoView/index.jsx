@@ -1,7 +1,8 @@
-import { Text } from 'react-native';
+import { FlatList, Text  } from 'react-native';
 import { useParams } from 'react-router-native';
 import useSingleRepoFetch from '../../hooks/useSingleRepoFetch';
 import RepositoryItem from '../RepositoryItem';
+import ReviewItem from './ReviewItem';
 
 export default function SingleRepoView() {
   // Fetch id from path URL
@@ -9,7 +10,19 @@ export default function SingleRepoView() {
   const { repository, loading } = useSingleRepoFetch(repoId);
 
   if (loading) return <Text>Loading...</Text>;
-  // console.log(repository);
 
-  return <RepositoryItem repository={repository} isSingleView={true} />;
+  const reviewNodes = repository
+    ? repository.reviews.edges.map((edge) => edge.node)
+    : [];
+
+  return (
+    <FlatList
+      data={reviewNodes}
+      renderItem={({ item }) => <ReviewItem review={item} />}
+      keyExtractor={(review) => review.id}
+      ListHeaderComponent={() => (
+        <RepositoryItem repository={repository} isSingleView={true} />
+      )}
+    />
+  );
 }

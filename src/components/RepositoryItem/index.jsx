@@ -1,11 +1,11 @@
-import { View, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable, Image } from 'react-native';
 import React from 'react';
-import AvatarView from './AvatarView';
 import DescriptionView from './DescriptionView';
 import StatsView from './StatsView';
 import { useNavigate } from 'react-router-native';
 import Text from '../Text';
 import * as Linking from 'expo-linking';
+import theme from '../../theme';
 
 export default function RepositoryItem({ repository, isSingleView }) {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function RepositoryItem({ repository, isSingleView }) {
       onPress={handleSingleView}
     >
       <View style={styles.top}>
-        <AvatarView ownerAvatarUrl={ownerAvatarUrl} />
+        <Image style={styles.avatar} source={{ uri: ownerAvatarUrl }} />
         <DescriptionView
           fullName={fullName}
           description={description}
@@ -69,14 +69,24 @@ export default function RepositoryItem({ repository, isSingleView }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.repositoryItemBackground,
+    paddingTop: 8 
   },
   top: {
     flexDirection: 'row',
   },
+  avatar: {
+    width: 48,
+    height: 48,
+    marginHorizontal: 15,
+    marginTop: 7,
+    borderRadius: 4,
+  },
   buttonText: {
     padding: 15,
     textAlign: 'center',
-    margin: 15,
+    marginHorizontal: 15,
+    marginBottom: 15,
+    marginTop: 5
   },
 });
