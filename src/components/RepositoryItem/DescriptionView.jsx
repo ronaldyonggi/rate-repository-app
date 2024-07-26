@@ -15,7 +15,7 @@ export default function DescriptionView({ fullName, description, language }) {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    maxWidth: 370,
+    maxWidth: 300,
   },
   language: {
     // Make the blue background fit the text instead of stretching
