@@ -5,6 +5,7 @@ import StatsView from './StatsView';
 import { useNavigate } from 'react-router-native';
 import Text from '../Text';
 import * as Linking from 'expo-linking';
+import theme from '../../theme';
 
 export default function RepositoryItem({ repository, isSingleView }) {
   const navigate = useNavigate();
@@ -68,7 +69,8 @@ export default function RepositoryItem({ repository, isSingleView }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.repositoryItemBackground,
+    paddingTop: 8 
   },
   top: {
     flexDirection: 'row',
@@ -83,6 +85,8 @@ const styles = StyleSheet.create({
   buttonText: {
     padding: 15,
     textAlign: 'center',
-    margin: 15,
+    marginHorizontal: 15,
+    marginBottom: 15,
+    marginTop: 5
   },
 });
