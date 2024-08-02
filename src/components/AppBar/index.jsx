@@ -15,6 +15,9 @@ export default function AppBar() {
     <Pressable style={styles.container}>
       <ScrollView horizontal style={styles.scrollView}>
         <Tab title='Repositories' path={'/'} />
+        {/* display Create a review tab only if a user's signed in */}
+        {data.me && <Tab title='Create a review' path={'/create-review'} />}
+        {/* display Sign in tab only if a user's not signed in, otherwise display Sign out */}
         {data.me? <SignOutTab /> : <Tab title='Sign in' path={'/sign-in'} />}
       </ScrollView>
     </Pressable>

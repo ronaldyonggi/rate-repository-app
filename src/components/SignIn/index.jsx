@@ -1,10 +1,11 @@
-import React from 'react'
-import SignInContainer from './SignInContainer';
+import React, { useState } from 'react';
+import SignInForm from './SignInForm';
 import useSignIn from '../../hooks/useSignIn';
 import { useNavigate } from 'react-router-native';
 
 export default function SignIn() {
-  const [signIn] = useSignIn();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [signIn] = useSignIn(setErrorMessage);
   const navigate = useNavigate();
   const onSubmit = async (values) => {
     const { username, password } = values;
@@ -16,5 +17,5 @@ export default function SignIn() {
       console.error(`Error at SignIn component: ${e}`);
     }
   };
-  return <SignInContainer onSubmit={onSubmit} />;
+  return <SignInForm onSubmit={onSubmit} errorMessage={errorMessage} />;
 }
