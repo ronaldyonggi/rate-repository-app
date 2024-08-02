@@ -14,4 +14,4 @@ export const CREATE_REVIEW = gql`
       repositoryId
     }
   }
-`
+`;
