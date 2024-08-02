@@ -6,6 +6,7 @@ export default function useSingleRepoFetch(repoId) {
     variables: {
       id: repoId,
     },
+    fetchPolicy: 'cache-and-network',
   });
 
   return { repository: data ? data.repository : null, loading };
