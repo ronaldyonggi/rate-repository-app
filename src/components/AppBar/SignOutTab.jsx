@@ -1,8 +1,9 @@
 import { useApolloClient } from '@apollo/client';
-import { Text, Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import useAuthStorage from '../../hooks/useAuthStorage';
 import { useNavigate } from 'react-router-native';
 import theme from '../../theme';
+import Text from '../Text';
 
 export default function SignOutTab() {
   const authStorage = useAuthStorage();
