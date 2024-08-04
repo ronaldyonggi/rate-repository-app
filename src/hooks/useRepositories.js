@@ -27,8 +27,30 @@ export default function useRepositories() {
 */
 
 // Implementation using GraphQL
-export default function useRepositories() {
-  const { loading, data } = useQuery(GET_REPOSITORIES);
+export default function useRepositories(principle) {
+  let orderBy, orderDirection;
+
+  switch (principle) {
+    case 'highest-rated':
+      orderBy = 'RATING_AVERAGE';
+      orderDirection = 'DESC';
+      break;
+    case 'lowest-rated':
+      orderBy = 'RATING_AVERAGE';
+      orderDirection = 'ASC';
+      break;
+    default:
+      orderBy = 'CREATED_AT';
+      orderDirection = 'DESC';
+  }
+
+  const { loading, data } = useQuery(GET_REPOSITORIES, {
+    variables: {
+      orderBy,
+      orderDirection,
+    },
+    fetchPolicy: 'cache-and-network',
+  });
 
   if (loading) return { repositories: [], loading };
 
