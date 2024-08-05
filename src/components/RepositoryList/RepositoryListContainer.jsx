@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import RepositoryItem from '../RepositoryItem';
 import PickerContainer from './PickerContainer';
+import SearchFilter from './SearchFilter';
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
@@ -8,6 +9,8 @@ export default function RepositoryListContainer({
   repositories,
   principle,
   setPrinciple,
+  searchKeyword,
+  setSearchKeyword,
 }) {
   // Get nodes from the edges array
   const repositoryNodes = repositories
@@ -16,6 +19,10 @@ export default function RepositoryListContainer({
 
   return (
     <>
+      <SearchFilter
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
       <PickerContainer principle={principle} setPrinciple={setPrinciple} />
       <FlatList
         data={repositoryNodes}
