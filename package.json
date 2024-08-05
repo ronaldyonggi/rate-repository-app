@@ -29,6 +29,7 @@
     "@expo/metro-config": "^0.18.8",
     "@expo/metro-runtime": "~3.2.1",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-picker/picker": "2.7.5",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "expo": "^51.0.24",
@@ -39,9 +40,10 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.52.1",
     "react-native": "0.74.3",
+    "react-native-paper": "^5.12.5",
     "react-native-web": "^0.19.12",
     "react-router-native": "^6.24.0",
-    "@react-native-picker/picker": "2.7.5"
+    "use-debounce": "^10.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",

@@ -27,7 +27,7 @@ export default function useRepositories() {
 */
 
 // Implementation using GraphQL
-export default function useRepositories(principle) {
+export default function useRepositories(principle, debouncedSearchKeyword) {
   let orderBy, orderDirection;
 
   switch (principle) {
@@ -48,6 +48,7 @@ export default function useRepositories(principle) {
     variables: {
       orderBy,
       orderDirection,
+      searchKeyword: debouncedSearchKeyword
     },
     fetchPolicy: 'cache-and-network',
   });

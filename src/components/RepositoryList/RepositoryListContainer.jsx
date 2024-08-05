@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import RepositoryItem from '../RepositoryItem';
-import { Picker } from '@react-native-picker/picker';
+import PickerContainer from './PickerContainer';
+import SearchFilter from './SearchFilter';
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
@@ -8,33 +9,28 @@ export default function RepositoryListContainer({
   repositories,
   principle,
   setPrinciple,
+  searchKeyword,
+  setSearchKeyword,
 }) {
-  function PickerContainer() {
-    return (
-      <Picker
-        selectedValue={principle}
-        onValueChange={(itemValue, itemIndex) => setPrinciple(itemValue)}
-      >
-        <Picker.Item label='Latest repositories' value='default' />
-        <Picker.Item label='Highest rated repositories' value='highest-rated' />
-        <Picker.Item label='Lowest rated repositories' value='lowest-rated' />
-      </Picker>
-    );
-  }
-
   // Get nodes from the edges array
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
 
   return (
-    <FlatList
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <RepositoryItem repository={item} />}
-      keyExtractor={(repository) => repository.id}
-      ListHeaderComponent={() => <PickerContainer />}
-    />
+    <>
+      <SearchFilter
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
+      <PickerContainer principle={principle} setPrinciple={setPrinciple} />
+      <FlatList
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={({ item }) => <RepositoryItem repository={item} />}
+        keyExtractor={(repository) => repository.id}
+      />
+    </>
   );
 }
 
