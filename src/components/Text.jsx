@@ -6,6 +6,7 @@ export default function Text({ color, fontSize, fontWeight, style, ...props }) {
     styles.text,
     color === 'secondary' && styles.colorTextSecondary,
     color === 'primary' && styles.colorPrimary,
+    color === 'danger' && styles.colorDanger,
     fontSize === 'subheading' && styles.fontSizeSubheading,
     fontWeight === 'bold' && styles.fontWeightBold,
     style,
@@ -26,6 +27,12 @@ const styles = StyleSheet.create({
   },
   colorPrimary: {
     backgroundColor: theme.colors.primary,
+    color: theme.colors.repositoryItemBackground,
+    borderRadius: 4,
+    flexGrow: 1,
+  },
+  colorDanger: {
+    backgroundColor: theme.colors.error,
     color: theme.colors.repositoryItemBackground,
     borderRadius: 4,
     flexGrow: 1,
