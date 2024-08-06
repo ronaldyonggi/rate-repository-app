@@ -8,6 +8,7 @@ import SignIn from './SignIn';
 import SingleRepoView from './SingleRepoView';
 import CreateReview from './CreateReview';
 import SignUp from './SignUp';
+import MyReviews from './MyReviews';
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
         <Route path='/' element={<RepositoryList />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/my-reviews' element={<MyReviews />} />
         <Route path='/create-review' element={<CreateReview />} />
         <Route path='/repository/:id' element={<SingleRepoView />} />
         <Route path='*' element={<Navigate to='/' replace />} />
