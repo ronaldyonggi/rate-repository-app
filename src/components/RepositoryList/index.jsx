@@ -8,7 +8,10 @@ export default function RepositoryList() {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [debouncedSearchKeyword] = useDebounce(searchKeyword, 1500);
   const [principle, setPrinciple] = useState('default');
-  const { repositories, loading } = useRepositories(principle, debouncedSearchKeyword);
+  const { repositories, loading } = useRepositories(
+    principle,
+    debouncedSearchKeyword
+  );
 
   if (loading) return <Text>Loading...</Text>;
 
