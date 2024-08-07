@@ -11,6 +11,7 @@ export default function RepositoryListContainer({
   setPrinciple,
   searchKeyword,
   setSearchKeyword,
+  onEndReach,
 }) {
   // Get nodes from the edges array
   const repositoryNodes = repositories
@@ -29,6 +30,8 @@ export default function RepositoryListContainer({
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => <RepositoryItem repository={item} />}
         keyExtractor={(repository) => repository.id}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     </>
   );
