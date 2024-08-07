@@ -5,13 +5,20 @@ import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 export default function RepositoryList() {
+  // Return the first x repositories
+  const first = 3;
+
   const [searchKeyword, setSearchKeyword] = useState('');
   const [debouncedSearchKeyword] = useDebounce(searchKeyword, 1500);
   const [principle, setPrinciple] = useState('default');
-  const { repositories, loading } = useRepositories(
+  const { repositories, loading, fetchMore } = useRepositories(
     principle,
-    debouncedSearchKeyword
+    debouncedSearchKeyword,
+    first
   );
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   if (loading) return <Text>Loading...</Text>;
 
@@ -22,6 +29,7 @@ export default function RepositoryList() {
       setPrinciple={setPrinciple}
       searchKeyword={searchKeyword}
       setSearchKeyword={setSearchKeyword}
+      onEndReach={onEndReach}
     />
   );
 }
