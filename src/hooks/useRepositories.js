@@ -27,7 +27,11 @@ export default function useRepositories() {
 */
 
 // Implementation using GraphQL
-export default function useRepositories(principle, debouncedSearchKeyword) {
+export default function useRepositories(
+  principle,
+  debouncedSearchKeyword,
+  first
+) {
   let orderBy, orderDirection;
 
   switch (principle) {
@@ -44,16 +48,39 @@ export default function useRepositories(principle, debouncedSearchKeyword) {
       orderDirection = 'DESC';
   }
 
-  const { loading, data } = useQuery(GET_REPOSITORIES, {
-    variables: {
-      orderBy,
-      orderDirection,
-      searchKeyword: debouncedSearchKeyword
-    },
+  const queryVariables = {
+    orderBy,
+    orderDirection,
+    searchKeyword: debouncedSearchKeyword,
+    first,
+  };
+
+  const { loading, data, fetchMore } = useQuery(GET_REPOSITORIES, {
+    variables: queryVariables,
     fetchPolicy: 'cache-and-network',
   });
 
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data && data.repositories.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        ...queryVariables,
+      },
+    });
+  };
+
   if (loading) return { repositories: [], loading };
 
-  return { repositories: data.repositories, loading };
+  return {
+    repositories: data.repositories,
+    fetchMore: handleFetchMore,
+    loading,
+  };
 }
