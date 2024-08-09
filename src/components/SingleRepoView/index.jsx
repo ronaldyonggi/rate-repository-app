@@ -1,4 +1,4 @@
-import { FlatList, Text  } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import { useParams } from 'react-router-native';
 import useSingleRepoFetch from '../../hooks/useSingleRepoFetch';
 import RepositoryItem from '../RepositoryItem';
@@ -7,7 +7,14 @@ import ReviewItem from './ReviewItem';
 export default function SingleRepoView() {
   // Fetch id from path URL
   const repoId = useParams().id;
-  const { repository, loading } = useSingleRepoFetch(repoId);
+  const { repository, loading, fetchMore } = useSingleRepoFetch({
+    repoId,
+    first: 2,
+  });
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   if (loading) return <Text>Loading...</Text>;
 
@@ -23,6 +30,8 @@ export default function SingleRepoView() {
       ListHeaderComponent={() => (
         <RepositoryItem repository={repository} isSingleView={true} />
       )}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 }

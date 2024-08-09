@@ -33,7 +33,7 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_SINGLE_REPOSITORY = gql`
-  query getSingleRepository($id: ID!) {
+  query getSingleRepository($id: ID!, $first: Int, $after: String) {
     repository(id: $id) {
       ...RepositoryDetails
     }

@@ -25,14 +25,17 @@ export const REPOSITORY_DETAILS = gql`
     ratingAverage
     ownerAvatarUrl
     url
-    reviews {
+    reviews(first: $first, after: $after) {
       edges {
         node {
           ...ReviewDetails
         }
       }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
     }
   }
   ${REVIEW_DETAILS}
 `;
-
